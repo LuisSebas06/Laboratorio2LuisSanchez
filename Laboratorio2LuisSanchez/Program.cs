@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Laboratorio2LuisSanchez
 {
@@ -60,9 +61,59 @@ namespace Laboratorio2LuisSanchez
         }
         static void Main(string[] args)
         {
-            for () {
-                string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\Laboratorio2LuisSanchez\Laboratorio2LuisSanchez\input_lab_2_example");
+            int res = 0;
+            string[] idr = new string[100];
+            double[] pricer = new double[100]; 
+            for (int i=0; i<100; i++) {
+                string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\Laboratorio2LuisSanchez\Laboratorio2LuisSanchez\input_challenge_lab_2.jsonl");
+                string[] jsonObjects = jsonText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                InputLab input = JsonSerializer.Deserialize<InputLab>(jsonObjects[i])!;
+                bool[] Variable = { false };
+                //Apartamentos
 
+                if (input.input2.typeBuilder == "Apartments")
+                {
+                    for (int j = 0; j < input.input1.Length; j++)
+                    {
+                        if (input.input1[j].builds.Apartments != null)
+                        {
+                            //Variables necesarios para los apartamentos
+                            var id = input.input1[j].builds.Apartments.Select(a => a.id).ToArray();
+                            var isPetFriendly = input.input1[j].builds.Apartments.Select(a => a.isPetFriendly).ToArray();
+                            var price = input.input1[j].builds.Apartments.Select(a => a.price).ToArray();
+
+                            if (Variable[0] == true)
+                            {
+                                for (int z = 0; z < input.input1[j].builds.Apartments.Length; z++)
+                                {
+                                    id[z] = input.input1[j].builds.Apartments[z].id;
+                                    isPetFriendly[z] = input.input1[j].builds.Apartments[z].isPetFriendly;
+                                    price[z] = input.input1[j].builds.Apartments[z].price;
+                                }
+                                //Determinar el precio y si tiene mascota
+                                for (int k = 0; k < input.input1[j].builds.Apartments.Length; k++)
+                                {
+                                    if (isPetFriendly[k] == input.input2.wannaPetFriendly && price[k] <= input.input2.budget)
+                                    {
+                                        idr[res] = id[k];
+                                        pricer[res] = price[k];
+                                        res++;
+                                    }
+                                }
+                                Variable[0] = false;
+                            }
+                        }
+                    }
+
+                }
+                if (input.input2.typeBuilder == "Houses")
+                {
+
+                }
+                if (input.input2.typeBuilder == "Premises")
+                {
+
+                }
             }
         }
     }
