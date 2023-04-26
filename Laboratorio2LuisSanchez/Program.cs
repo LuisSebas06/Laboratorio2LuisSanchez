@@ -119,31 +119,29 @@ public class Program
                                 // Asignar el número dependiendo del color de zona de riesgo.
                                 switch (house.zoneDangerous)
                                 {
-                                    case "Green":
+                                case"Green":
                                 Color[j] = 3;
-                                        break;
-                                    case "Yellow":
+                                break;
+                                case"Yellow":
                                 Color[j] = 2;
-                                        break;
-                                    case "Orange":
+                                break;
+                                case"Orange":
                                 Color[j] = 1;
-                                        break;
-                                    case "Red":
+                                break;
+                                case"Red":
                                 Color[j] = 0;
-                                        break;
+                                break;
                                 }
                             }
-
+                            //Recorrer el input de casas
                             for (int j = 0; j < input.input1[i].builds.Houses.Length; j++)
                             {
+                             //Buscar el presupuesto y color
                                 if (Color[j] <= ColorD && precio[j] <= input.input2.budget)
                                 {
-                                    idr[res] = id[j];
-                                    price1[res] = precio[j];
-                                    res++;
+                                    idr[res] = id[j]; price1[res] = precio[j]; res++;
                                 }
                             }
-
                     DeterminarVacio[1] = false;
                         }
                     }
