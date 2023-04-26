@@ -68,7 +68,8 @@ public class Program
             string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\lab2_ED\lab2_ED\input_challenge_lab_2.jsonl");
             string[] jsonObjects = jsonText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             InputLab input = JsonSerializer.Deserialize<InputLab>(jsonObjects[r])!;
-            double[] pricee = new double[1000];
+
+            double[] price1 = new double[1000];
             bool[] DeterminarVacio = { false, false, false };
             int ColorD = 0;
             int res = 0;
@@ -89,7 +90,7 @@ public class Program
                                     if (PFs[i] == input.input2.wannaPetFriendly && Budgets[i] <= input.input2.budget)
                                     {
                                         idr[res] = item.builds.Apartments[i].id;
-                                        pricee[res] = Budgets[i];
+                                        price1[res] = Budgets[i];
                                         res++;
                                     }
                                 }
@@ -138,7 +139,7 @@ public class Program
                                 if (Color[j] <= ColorD && precio[j] <= input.input2.budget)
                                 {
                                     idr[res] = id[j];
-                                    pricee[res] = precio[j];
+                                    price1[res] = precio[j];
                                     res++;
                                 }
                             }
@@ -158,7 +159,7 @@ public class Program
                         }
 
                         idr = new string[totalPremises];
-                        pricee = new double[totalPremises];
+                        price1 = new double[totalPremises];
                         res = 0;
                         int index = 0;
 
@@ -171,7 +172,7 @@ public class Program
                                     if (p.commercialActivities.Contains(input.input2.commercialActivity) && p.price <= input.input2.budget)
                                     {
                                         idr[index] = p.id;
-                                        pricee[index] = p.price;
+                                        price1[index] = p.price;
                                         index++;
                                         res++;
                                     }
@@ -220,7 +221,7 @@ public class Program
                     }
 
                     // Llamar a Quicksort para ordenar los arreglos
-                    Quicksort(pricee, idr, 0, res - 1);
+                    Quicksort(price1, idr, 0, res - 1);
 
                     var respuestaFinal = new StringBuilder("[");
                     for (int i = 0; i < res; i++)
