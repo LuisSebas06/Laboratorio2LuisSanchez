@@ -75,7 +75,7 @@ public class Program
             int res = 0;
             string[] idr = new string[1000];
 
-
+            //Verificar que lo seleccionado sean apartamentos
             if (input.input2.typeBuilder == "Apartments")
             {
                         foreach (var item in input.input1)
@@ -98,6 +98,7 @@ public class Program
 
                         }
                     }
+            //Se verifica que 
             if (input.input2.typeBuilder == "Houses")
             {
 
