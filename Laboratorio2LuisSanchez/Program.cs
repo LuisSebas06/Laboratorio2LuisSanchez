@@ -82,18 +82,27 @@ public class Program
                         {
                             if (item.builds.Apartments != null)
                             {
-                                bool[] PFs = item.builds.Apartments.Select(a => a.isPetFriendly).ToArray();
-                                double[] Budgets = item.builds.Apartments.Select(a => a.price).ToArray();
+                        // Se obtiene un arreglo de booleanos que indican si cada apartamento es apto para mascotas
+                        bool[] isPetFriendly = item.builds.Apartments.Select(a => a.isPetFriendly).ToArray();
 
-                                for (int i = 0; i < item.builds.Apartments.Length; i++)
-                                {
-                                    if (PFs[i] == input.input2.wannaPetFriendly && Budgets[i] <= input.input2.budget)
-                                    {
-                                        idr[res] = item.builds.Apartments[i].id;
-                                        price1[res] = Budgets[i];
-                                        res++;
-                                    }
-                                }
+                        // Se obtiene un arreglo de precios de cada apartamento
+                        double[] prices = item.builds.Apartments.Select(a => a.price).ToArray();
+
+
+                        // Se recorre cada apartamento y filtrar por criterios de búsqueda
+                        for (int i = 0; i < item.builds.Apartments.Length; i++)
+                        {
+                            bool isPetFriendlyMatch = isPetFriendly[i] == input.input2.wannaPetFriendly;
+                            bool isWithinBudget = prices[i] <= input.input2.budget;
+
+                            if (isPetFriendlyMatch && isWithinBudget)
+                            {
+                                idr[res] = item.builds.Apartments[i].id;
+                                price1[res] = prices[i];
+                                res++;
+
+                            }
+                        }
                             }
 
                         }
