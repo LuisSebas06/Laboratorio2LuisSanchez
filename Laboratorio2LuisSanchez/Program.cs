@@ -61,6 +61,7 @@ public class Program
 
     static void Main(string[] args)
     {
+        //Ciclo for para buscar todos las opciones
         for (int r = 0; r < 100; r++)
         {
             string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\lab2_ED\lab2_ED\input_challenge_lab_2.jsonl");
