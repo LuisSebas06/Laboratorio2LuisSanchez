@@ -61,18 +61,21 @@ public class Program
 
     static void Main(string[] args)
     {
+        //Ciclo for para buscar todos las opciones
         for (int r = 0; r < 100; r++)
         {
+            //Variables a utilizar
             string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\lab2_ED\lab2_ED\input_challenge_lab_2.jsonl");
             string[] jsonObjects = jsonText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             InputLab input = JsonSerializer.Deserialize<InputLab>(jsonObjects[r])!;
-            double[] pricee = new double[1000];
+
+            double[] price1 = new double[1000];
             bool[] DeterminarVacio = { false, false, false };
             int ColorD = 0;
             int res = 0;
             string[] idr = new string[1000];
 
-
+            //Verificar que lo seleccionado sean apartamentos
             if (input.input2.typeBuilder == "Apartments")
             {
                         foreach (var item in input.input1)
@@ -87,7 +90,7 @@ public class Program
                                     if (PFs[i] == input.input2.wannaPetFriendly && Budgets[i] <= input.input2.budget)
                                     {
                                         idr[res] = item.builds.Apartments[i].id;
-                                        pricee[res] = Budgets[i];
+                                        price1[res] = Budgets[i];
                                         res++;
                                     }
                                 }
@@ -95,6 +98,7 @@ public class Program
 
                         }
                     }
+            //Se verifica que 
             if (input.input2.typeBuilder == "Houses")
             {
 
@@ -127,20 +131,18 @@ public class Program
                                         break;
                                     case "Red":
                                 Color[j] = 0;
-                                        break;
+                                break;
                                 }
                             }
-
+                            //Recorrer el input de casas
                             for (int j = 0; j < input.input1[i].builds.Houses.Length; j++)
                             {
+                             //Buscar el presupuesto y color
                                 if (Color[j] <= ColorD && precio[j] <= input.input2.budget)
                                 {
-                                    idr[res] = id[j];
-                                    pricee[res] = precio[j];
-                                    res++;
+                                    idr[res] = id[j]; price1[res] = precio[j]; res++;
                                 }
                             }
-
                     DeterminarVacio[1] = false;
                         }
                     }
@@ -156,7 +158,7 @@ public class Program
                         }
 
                         idr = new string[totalPremises];
-                        pricee = new double[totalPremises];
+                        price1 = new double[totalPremises];
                         res = 0;
                         int index = 0;
 
@@ -169,7 +171,7 @@ public class Program
                                     if (p.commercialActivities.Contains(input.input2.commercialActivity) && p.price <= input.input2.budget)
                                     {
                                         idr[index] = p.id;
-                                        pricee[index] = p.price;
+                                        price1[index] = p.price;
                                         index++;
                                         res++;
                                     }
@@ -218,7 +220,7 @@ public class Program
                     }
 
                     // Llamar a Quicksort para ordenar los arreglos
-                    Quicksort(pricee, idr, 0, res - 1);
+                    Quicksort(price1, idr, 0, res - 1);
 
                     var respuestaFinal = new StringBuilder("[");
                     for (int i = 0; i < res; i++)
