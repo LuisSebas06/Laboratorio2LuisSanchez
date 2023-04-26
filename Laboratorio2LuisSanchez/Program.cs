@@ -64,6 +64,7 @@ public class Program
         //Ciclo for para buscar todos las opciones
         for (int r = 0; r < 100; r++)
         {
+            //Variables a utilizar
             string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\lab2_ED\lab2_ED\input_challenge_lab_2.jsonl");
             string[] jsonObjects = jsonText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             InputLab input = JsonSerializer.Deserialize<InputLab>(jsonObjects[r])!;
