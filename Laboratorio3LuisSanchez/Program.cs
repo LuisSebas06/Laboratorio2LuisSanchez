@@ -352,6 +352,19 @@ namespace Laboratorio3LuisSanchez
                 //Se relaciona el arbol con el array del presupuesto
                 AVLTree tree = new AVLTree();
                 tree.InsertArray(budget);
+                //Se declara variable para el valor a buscar en base a los rechazados en el arbol
+                Int64 valorEncontrado = tree.FindDataByPosition(ValorBuscar);
+                //Se declaran variables de los inputs los cuales nos serviran para armar la informacion
+                Int64 DPIEncontrado = 0;
+                string DateEncontrado = "";
+                string firstName = "";
+                string lastName = "";
+                string job = "";
+                string placeJob = "";
+                Int64 salary = 0;
+                string Date = "";
+                string property = "";
+                string signature = "";
             }
         }
 }
