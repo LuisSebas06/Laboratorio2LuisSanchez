@@ -365,6 +365,20 @@ namespace Laboratorio3LuisSanchez
                 string Date = "";
                 string property = "";
                 string signature = "";
+
+                //Arreglo para los DPI
+                Int64[] DPI = new Int64[input.customers.Count];
+                //Ciclo for para recorrer todos los clientes
+                for (int i = 0; i < input.customers.Count; i++)
+                {
+                    //Numero especifico del dpi del cliente
+                    DPI[i] = input.customers[i].dpi;
+                    //Comparativa para determinar si el presupuesto ganador es igual al del json para sacar el dpi
+                    if (valorEncontrado == input.customers[i].budget)
+                    {
+                        DPIEncontrado = DPI[i];
+                    }
+                }
             }
         }
 }
