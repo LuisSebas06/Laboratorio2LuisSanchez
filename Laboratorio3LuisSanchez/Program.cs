@@ -6,7 +6,7 @@ namespace Laboratorio3LuisSanchez
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Creacion de clases
         }
     }
 }
