@@ -395,9 +395,36 @@ namespace Laboratorio3LuisSanchez
                     {
                         //Obtener dpi
                         DPI2[i] = input2.dpi;
+                        //Se compara el dpi que se encontro en el anterior json con el json2
+                        if (DPIEncontrado == input2.dpi)
+                        {
+                            //Se nombran variables y se le agregan los datos dependiendo los datos obtenidos
+                            DateEncontrado = input2.birthDate;
+                            firstName = input2.firstName;
+                            lastName = input2.lastName;
+                            job = input2.job;
+                            placeJob = input2.placeJob;
+                            salary = input2.salary;
+                            property = input.property;
+                            Date = input.customers[0].date;
+                            //Aplicando Hash para encriptar el DPI
+                            string DPIHash = DPI2[i].ToString();
+                            MD5 md5 = MD5.Create();
+                            byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(DPIHash));
 
+                            StringBuilder sb = new StringBuilder();
+                            for (int j = 0; j < hashBytes.Length; j++)
+                            {
+                                sb.Append(hashBytes[j].ToString("x2"));
+                            }
+                            signature = sb.ToString();
+
+                        }
                     }
                 }
+
+                // Imprimir la línea con todos los valores requeridos
+                Console.WriteLine("{\"dpi\":" + DPIEncontrado + ",\"budget\":" + valorEncontrado + ",\"date\":\"" + Date + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"birthDate\":\"" + DateEncontrado + "\",\"job\":\"" + job + "\",\"placeJob\":\"" + placeJob + "\",\"salary\":" + salary + ",\"property\":\"" + property + "\",\"signature\":\"" + signature + "\"}");
             }
         }
     }
