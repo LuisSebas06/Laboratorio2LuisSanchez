@@ -288,7 +288,49 @@ namespace Laboratorio3LuisSanchez
                 Traverse(root);
             }
 
-            static void Main(string[] args)
+            //Busqueda de arbol
+            private int positionCounter = 0;
+
+            private Node FindDataByPosition(Node node, int position)
+            {
+                if (node == null)
+                {
+                    return null;
+                }
+
+                Node right = FindDataByPosition(node.right, position);
+                if (right != null)
+                {
+                    return right;
+                }
+
+                positionCounter++;
+                if (positionCounter == position)
+                {
+                    return node;
+                }
+
+                Node left = FindDataByPosition(node.left, position);
+                if (left != null)
+                {
+                    return left;
+                }
+
+                return null;
+            }
+
+            public int FindDataByPosition(int position)
+            {
+                positionCounter = 0;
+                Node result = FindDataByPosition(root, position);
+                if (result != null)
+                {
+                    return result.data;
+                }
+                throw new ArgumentException("La posición especificada está fuera de rango");
+            }
+        }
+        static void Main(string[] args)
         {
             //Leer json
             string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\Lab3LuisSanchez\Lab3LuisSanchez\input_auctions_example_lab_3.jsonl");
