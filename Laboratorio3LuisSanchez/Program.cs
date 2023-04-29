@@ -349,6 +349,9 @@ namespace Laboratorio3LuisSanchez
                 {
                     budget[i] = input.customers[i].budget;
                 }
+                //Se relaciona el arbol con el array del presupuesto
+                AVLTree tree = new AVLTree();
+                tree.InsertArray(budget);
             }
         }
 }
