@@ -12,8 +12,8 @@ namespace Laboratorio3LuisSanchez
 {
     class Program
     {
-            //Creacion de clases con ayuda de convertidos online
-            public class Customer
+        //Creacion de clases con ayuda de convertidos online
+        public class Customer
         {
             public Int64 dpi { get; set; }
             public Int64 budget { get; set; }
@@ -376,10 +376,29 @@ namespace Laboratorio3LuisSanchez
                     //Comparativa para determinar si el presupuesto ganador es igual al del json para sacar el dpi
                     if (valorEncontrado == input.customers[i].budget)
                     {
+                        //Dpi encontrado se guarda
                         DPIEncontrado = DPI[i];
+                    }
+                }
+                // Leer json2
+                string jsonText2 = File.ReadAllText(@"C:\Users\usuario\source\repos\Lab3LuisSanchez\Lab3LuisSanchez\input_customer_example_lab_3.jsonl");
+                string[] jsonObjects2 = jsonText2.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                // Recorrer el json
+                for (int p = 0; p < jsonObjects2.Length; p++)
+                {
+                    //Deserealizar json2
+                    InputLab2 input2 = JsonConvert.DeserializeObject<InputLab2>(jsonObjects2[p])!;
+                    //Crear un arreglo de Dpi del json2
+                    Int64[] DPI2 = new Int64[jsonObjects2.Length];
+                    //Recorrer el input
+                    for (int i = 0; i < jsonObjects2.Length; i++)
+                    {
+                        //Obtener dpi
+                        DPI2[i] = input2.dpi;
+
                     }
                 }
             }
         }
-}
+    }
 }
