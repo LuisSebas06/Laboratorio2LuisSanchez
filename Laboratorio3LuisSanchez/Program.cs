@@ -57,7 +57,24 @@ namespace Laboratorio3LuisSanchez
 
         static void Main(string[] args)
         {
-
-    }
+            //Leer json
+            string jsonText = File.ReadAllText(@"C:\Users\usuario\source\repos\Lab3LuisSanchez\Lab3LuisSanchez\input_auctions_example_lab_3.jsonl");
+            string[] jsonObjects = jsonText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            //Definir el tamaño que va a leer
+            for (int r = 0; r < jsonObjects.Length; r++)
+            {
+                //Deserealizar el json
+                InputLab1 input = JsonConvert.DeserializeObject<InputLab1>(jsonObjects[r])!;
+                //Definir valor en base a rechazados
+                int ValorBuscar = (input.rejection) + 1;
+                //Definir el presupuesto
+                Int64[] budget = new Int64[input.customers.Count];
+                //Definir ciclo for para crear un arreglo de los presupuestos
+                for (int i = 0; i < input.customers.Count; i++)
+                {
+                    budget[i] = input.customers[i].budget;
+                }
+            }
+        }
 }
 }
