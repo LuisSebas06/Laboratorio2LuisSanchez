@@ -38,6 +38,23 @@ namespace Laboratorio3LuisSanchez
             public string placeJob { get; set; }
             public Int64 salary { get; set; }
         }
+        class Node
+        {
+            public int data;
+            public int height;
+            public Node left;
+            public Node right;
+
+            public Node(int data)
+            {
+                this.data = data;
+                this.height = 1;
+                this.left = null;
+                this.right = null;
+            }
+        }
+        //Creacion del Arbol para tener los datos ordenados
+
         static void Main(string[] args)
         {
 
