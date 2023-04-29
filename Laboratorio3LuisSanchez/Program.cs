@@ -423,7 +423,7 @@ namespace Laboratorio3LuisSanchez
                     }
                 }
 
-                // Imprimir la línea con todos los valores requeridos
+                // Imprimir la línea con todos los valores requeridos del cliente
                 Console.WriteLine("{\"dpi\":" + DPIEncontrado + ",\"budget\":" + valorEncontrado + ",\"date\":\"" + Date + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"birthDate\":\"" + DateEncontrado + "\",\"job\":\"" + job + "\",\"placeJob\":\"" + placeJob + "\",\"salary\":" + salary + ",\"property\":\"" + property + "\",\"signature\":\"" + signature + "\"}");
             }
         }
